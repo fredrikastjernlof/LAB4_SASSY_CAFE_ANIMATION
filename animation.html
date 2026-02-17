@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="icon" href="/favicon-donut.svg" type="image/svg+xml">
+    <title>SASSy Café - Animering</title>
+</head>
+
+<body>
+    <a class="skip-link" href="#main">Hoppa till innehåll</a>
+    <div class="container">
+        <header class="site-header">
+            <div class="brand">
+                <a href="index.html" class="brand-link">
+                    <img class="brand-icon" src="/favicon-donut.svg" alt="" aria-hidden="true">
+                    <h1 class="logo">SASSy Café</h1>
+                </a>
+            </div>
+            <nav class="nav">
+                <ul class="nav-ul">
+                    <li>
+                        <a href="index.html">Start</a>
+                    </li>
+                    <li>
+                        <a href="#">Meny</a>
+                    </li>
+                    <li>
+                        <a href="#">Boka bord</a>
+                    </li>
+                    <li>
+                        <a href="#">Om oss</a>
+                    </li>
+                    <li>
+                        <a href="animation.html">Animering</a>
+                    </li>
+                    <li>
+                        <a href="sass.html">SASS</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main id="main" class="main">
+            <section class="animation-page">
+                <div class="hero">
+                    <img class="hero-img" src="/images/header1.webp" alt="Färgglada munkar med strössel">
+                    <h2 class="hero-sass">Animering 🍩✨</h2>
+                    <p>Här testar jag keyframes, transitions och en interaktiv animation med JavaScript.</p>
+                </div>
+                <section class="candy-lab">
+                    <h3>Candy Lab</h3>
+                    <p>Tryck på knappen och se vad som händer 👀</p>
+
+                    <button type="button" class="btn-sugar" id="toggleSugar">
+                        Starta sockerrus!
+                    </button>
+
+                    <div class="sprinkle-zone" aria-hidden="true"></div>
+                </section>
+            </section>
+        </main>
+        <footer class="site-footer">
+            <p> &copy; 2026 Fredrika Stjernlöf</p>
+            <p>
+                Denna webbplats har skapats som en del i kursen Frontend-baserad
+                webbutveckling på Mittuniversitetet i Sundsvall.
+            </p>
+        </footer>
+    </div>
+    <script type="module" src="/src/js/main.js"></script>
+</body>
+
+</html>
