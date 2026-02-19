@@ -1,32 +1,41 @@
+"use strict";
 import "../styles/main.scss";
-
-"use strict"
 
 /* Hämtar knappen och sidan/sektionen som ska få "mode"-klasser */
 const sugarBtn = document.querySelector(".btn-sugar");
 const animationPage = document.querySelector(".animation-page");
+const animationHeader = document.querySelector(".animation-header");
+const body = document.querySelector("body.page-animation");
+const bubbleLayer = document.querySelector(".bubble-layer");
 
 /* Håller koll på vilket läge knappen är i: 0=av, 1-3=effekter */
 let mode = 0;
 
 /* Kör bara om elementen faktiskt finns på sidan */
-if (sugarBtn && animationPage) { 
+if (!sugarBtn || !body) {
+
+} else {
     sugarBtn.addEventListener("click", () => {
-        /* Nästa läge */
-        mode++;
+        mode = (mode + 1) % 4;
 
-         /* Efter 3 lägen: reset (stäng av allt) */
-        if (mode > 3) {
-            mode = 0; 
+        /* Efter 3 lägen: reset (stäng av allt) */
+        animationPage?.classList.remove("mode-1");
+        body?.classList.remove("mode-2");
+        animationHeader?.classList.remove("mode-3");
+        bubbleLayer?.classList.remove("mode-2");
+
+        if (mode >= 1) {
+            animationHeader?.classList.add("mode-1");
+            
+        }
+        if (mode >= 2) {
+            body?.classList.add("mode-2");
+            bubbleLayer?.classList.add("mode-2"); 
+        }
+        if (mode >= 3) {
+            animationPage?.classList.add("mode-3");
         }
 
-        /* Nollställ alltid gamla klasser innan vi sätter ny */
-        animationPage.classList.remove("mode-1", "mode-2", "mode-3");
-
-         /* Lägg på rätt klass om vi är i läge 1-3 */
-        if (mode !== 0) {
-            animationPage.classList.add(`mode-${mode}`);
-        }
 
         /*Test test */
         console.log("Sockerrus-läge:", mode);
