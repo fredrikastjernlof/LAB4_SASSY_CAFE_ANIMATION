@@ -2,6 +2,7 @@
 @use "variables" as var;
 @use "mixins" as mix;
 @use "utilities" as *;
+@use "animations" as ani;
 
 * {
   box-sizing: border-box;
@@ -25,7 +26,7 @@ body {
   background: #000;
   color: #fff;
   border-radius: 0.5rem;
-  z-index: 9999;
+  z-index: 99999;
 }
 
 .skip-link:focus {
@@ -56,6 +57,53 @@ body {
     margin-top: 2.5rem;
 
     @include mix.sassy-logo(var.$color-mint, var.$color-purple);
+  }
+
+  &.animation-header.mode-1 {
+    /* Headern blir en referens för barn inuti den som är position: absolute */
+    position: relative; 
+    /* Klipper bort allt som hamnar utanför headern */
+    overflow: hidden; 
+
+    .color-animation {
+      /* Tar elementet ur normal layout och låter mig placera det fritt */
+      position: absolute; 
+      /* Ett negativt värde gör att elementet blir större än föräldern och sticker ut åt alla håll */
+      inset: -75%; 
+      /* Lägger "bakgrunds-färgklumpen" bakom innehållet -> som får z-index 1 senare */
+      z-index: 0;
+      /* Konisk gradient med startvinkel 0deg */
+      background: conic-gradient(from 0deg,
+          var.$color-secondary,
+          var.$color-primary,
+          var.$color-purple,
+          var.$color-accent-mint,
+          var.$color-secondary,
+          var.$color-primary,
+          var.$color-purple,
+          var.$color-accent-mint,
+          var.$color-secondary );
+
+      /* Suddar ut gradientens färger och skapar ett blurr av färger */
+      filter: blur(50px);
+      /* Talar om att rotationen ska ske runt mitten */
+      transform-origin: 50% 50%;
+      /* Talar om för webbläsaren att elementet kommer att genomgå en transformation, 
+      vilket kan göra animationen mjukare */
+      will-change: transform;
+      /* Animation med villkor - namn, tid för utförande, konstant hastighet och evig loop */
+      animation: spin-animation 20s linear infinite;
+    }
+
+    .color-animation-container {
+      /* För att ha kontroll över z-index och eventuella absoluta barn */
+      position: relative;
+      /* Ligger ÖVER .color-animation */
+      z-index: 1;
+      /* Fyller hela föräldern */
+      width: 100%;
+      height: 100%;
+    }
   }
 
   .brand {
@@ -179,6 +227,63 @@ body {
   }
 }
 
+.bubble-layer {
+  /* Gör att lagret sitter fast i viewporten, det rör sig inte när man scrollar.*/
+  position: fixed;
+  /* Lagret ska täcka hela skärmen - alltså: top:, right:, bottom:, left: = 0 */
+  inset: 0;
+  /* Gör att jag kan klicka "genom" bubblorna - dom blockerar inte länkar eller knappar */
+  pointer-events: none;
+  z-index: 9999;
+   /* Opacity: 0; och visability: hidden; gör bubblorna osynliga från början */
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* När mode-2 aktiveras (knappläge 2) blir bubblorna synliga */
+.bubble-layer.mode-2 {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Gäller för ALLA bubblor */
+.bubble {
+  /* Gör att jag kan placera varje bubbla fritt inuti .bubble-layer */
+  position: absolute;
+  will-change: transform;
+  animation: floaty 30s linear infinite;
+}
+
+/* Inställningar för varje enskild bubbla */
+.b1 {
+  width: 8%; /* Storleken baseras på skärmens bredd */
+  height: auto;
+  max-width: 110px; /* Blir aldrig större än 110px */
+  left: 10%; /* Startar 10% från vänster */
+  top: 90%; /* Startar långt ned på sidan */
+  animation-duration: 15s; /* Rör sig lite snabbare än de andra bubblorna */
+}
+
+.b2 {
+  width: 12%;
+  height: auto;
+  max-width: 160px; 
+  left: 50%;
+  top: 85%;
+  animation-duration: 22s;
+}
+
+.b3 {
+  width: 10%;
+  height: auto;
+  max-width: 130px;
+  left: 80%;
+  top: 80%;
+  animation-duration: 20s;
+}
+
+
+
 .site-footer {
   @extend %card;
   margin-top: 1rem;
@@ -246,7 +351,7 @@ body {
 
   .site-header {
     margin-bottom: 1rem;
-    background: linear-gradient(135deg,
+    background: linear-gradient(-135deg,
         var.$dark-purple-pink,
         var.$dark-purple,
         var.$dark-secondary,
@@ -255,6 +360,26 @@ body {
 
     a {
       color: var.$dark-text;
+    }
+
+
+    &.animation-header.mode-1 {
+      .color-animation {
+        background: conic-gradient(from 0deg,
+            var.$dark-purple-pink,
+            var.$dark-purple,
+            var.$dark-secondary,
+            var.$dark-primary,
+            var.$color-primary-darker,
+            var.$dark-purple-black,
+            var.$dark-purple-pink,
+            var.$dark-purple,
+            var.$dark-secondary,
+            var.$dark-primary,
+            var.$color-primary-darker,
+            var.$dark-purple-black,
+            var.$dark-purple-pink );
+      }
     }
   }
 
