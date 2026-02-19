@@ -1,0 +1,33 @@
+@use "variables" as var;
+
+
+@keyframes spin-animation {
+  from {
+    transform: rotate(0turn);
+  }
+
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+
+@keyframes floaty {
+  0% { 
+    transform: translateY(0) translateX(0) scale(1);
+  }
+  50% {
+    /* TranslateY -> 400px uppåt, TranslateX -> Rör sig lite åt höger, scale(1.05) -> lite större*/
+    transform: translateY(-400px) translateX(40px) scale(1);
+  }
+  75% {
+    /* TranslateY -> 600px uppåt, TranslateX -> svänger lite åt vänster, scale(1) -> normal storlek */
+    transform: translateY(-600px) translateX(-20px) scale(1.2);
+   }
+
+  100% {
+    /* TranslateY -> Totalt 800px uppåt, TranslateX -> svänger lite åt höger, scale(1) -> normal storlek */
+    transform: translateY(-800px) translateX(20px) scale(1);
+  }
+}
+    
