@@ -1,46 +1,60 @@
-# Laboration 3 – SASS och strukturerad CSS 👩🏼‍💻🎨
+# Laboration 4 – Grafiska effekter med CSS 👩🏼‍💻🎨
 
-Detta repository innehåller webbplatsen SASSy Café, skapad som en del av kursmomentet kring SASS och strukturerad CSS i frontend-baserad webbutveckling.
+Detta repository innehåller vidareutvecklingen av webbplatsen SASSy Café, skapad som en del av momentet kring grafiska effekter med CSS i kursen Frontend-baserad webbutveckling.
 
-Projektet är byggt med Vite och fokuserar på att arbeta modulärt med SASS, använda variabler, mixins, @extend samt skapa både ljust och mörkt tema.
+I denna laboration har fokus legat på animationer, interaktion och kreativt arbete med CSS och JavaScript.
 
 ## Syfte 🏁
 Syftet med laborationen är att:
-- arbeta med SASS för att strukturera och effektivisera CSS
-- använda variabler, mixins och @extend
-- skapa ett ljust och ett mörkt tema
-- arbeta modulärt med flera SASS-filer
-- automatisera bildoptimering
+- skapa animationer med hjälp av @keyframes, transition och transform
+- skapa dynamiska funktioner som reagerar på användarinteraktion
+- vidareutveckla en tidigare webbplats
+- arbeta strukturerat med SASS
+- fortsätta att använda befintlig utvecklingsmiljö (Vite)
 - fortsätta arbeta med Git, branch-struktur och publicering
 
 ## Tekniker 🧩
 - Vite
 - HTML, 
 - SASS (SCSS)
-- Node.js
-- Sharp (bildoptimering till WebP)
+- JavaScript
 - Git & GitHub
 
-## Funktionalitet 💡
-- Ljust och mörkt tema via prefers-color-scheme
-- Modulär SASS-struktur med:
-    - _variables.scss
-    - _mixins.scss
-    - _utilities.scss
-    - _base.scss
-- Återanvändbara mixins och placeholders (@extend)
-- Bildoptimering via eget Node-script
-- Responsiv layout (grid + mobilmeny)
+## Animationer & Funktionalitet ✨
+
+Webbplatsen innehåller flera olika animationer:
+
+### Rörliga objekt 🫧
+- Animerade såpbubblor som flyter över skärmen (egenskapade i Photopea)
+- Dekorativa "sprinkles" som strösslas över en foto-grid
+- Roterande donut
+
+### CSS-animationer 🎨 
+- Färg- och bakgrundseffekter
+- Bild- och texteffekter
+- Rörelser skapade med @keyframes
+- Övergångar med transition
+- Transformationer med transform
+
+### Interaktiv animation 🔘
+- En knapp som triggar olika animationslägen (mode 1, 2 och 3)
+- JavaScript styr klassändringar och dynamiska effekter
+- Visuell återkoppling via statuslista
 
 ## Publicering 💻
-https://lab3-sassy-cafe.onrender.com
+
 
 ## Det här tar jag med mig från uppgiften ✅🙌
 
-Den här uppgiften har gett mig:
+Vilken rolig uppgift! Jag har verkligen fått vara kreativ och experimentera. Den detalj jag är allra mest nöjd med är de animerade såpbubblorna – som jag själv har skapat i Photopea och integrerat i animationen.
 
-- bättre förståelse för struktur i större CSS-projekt
-- större trygghet i att arbeta modulärt
-- ökad förståelse för hur teman och färgsystem fungerar
+Arbetet har varit både utmanande och nästan lite beroendeframkallande – det är svårt att sluta när man hela tiden vill testa “bara en grej till”.
 
-Kanske viktigast av allt: jag är mer trygg med att arbeta i terminalen och börjar få grepp om Vite och fördelarna med det. Jag har mer självförtroende i att testa, bryta, göra fel och förstå varför.
+Jag blev också väldigt medveten om hur viktigt det är att arbeta med partials. Tyvärr insåg jag det i senaste laget - dvs när min base var helt full med saker som kanske inte riktigt hörde hemma där. Så det var först på slutet som jag började strukturera och "städa upp". 
+
+Jag tar med mig:
+
+- större förståelse för hur CSS-animationer fungerar
+- bättre kontroll över @keyframes, transform och transition
+- ökad trygghet i att kombinera CSS och JavaScript
+- nästa gång ska jag försöka skapa en bättre filstruktur från början - så man slipper "städa" så mycket i slutet. 
