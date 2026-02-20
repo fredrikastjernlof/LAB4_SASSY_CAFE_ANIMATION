@@ -19,17 +19,17 @@
 
     50% {
         /* TranslateY -> 400px uppåt, TranslateX -> Rör sig lite åt höger, scale(1.05) -> lite större*/
-        transform: translateY(-400px) translateX(40px) scale(1);
+        transform: translateY(-700px) translateX(40px) scale(1);
     }
 
     75% {
         /* TranslateY -> 600px uppåt, TranslateX -> svänger lite åt vänster, scale(1) -> normal storlek */
-        transform: translateY(-600px) translateX(-20px) scale(1.2);
+        transform: translateY(-1050px) translateX(-20px) scale(1.2);
     }
 
     100% {
-        /* TranslateY -> Totalt 800px uppåt, TranslateX -> svänger lite åt höger, scale(1) -> normal storlek */
-        transform: translateY(-800px) translateX(20px) scale(1);
+        /* TranslateY -> Totalt 1400px uppåt, TranslateX -> svänger lite åt höger, scale(1) -> normal storlek */
+        transform: translateY(-1400px) translateX(20px) scale(1);
     }
 }
 

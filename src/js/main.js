@@ -3,7 +3,7 @@ import "../styles/main.scss";
 
 /* Hämtar knappen och sidan/sektionen som ska få "mode"-klasser */
 const sugarBtn = document.querySelector(".btn-sugar");
-const animationPage = document.querySelector(".animation-page");
+const sprinkleZone = document.querySelector(".sprinkle-zone");
 const animationHeader = document.querySelector(".animation-header");
 const body = document.querySelector("body.page-animation");
 const bubbleLayer = document.querySelector(".bubble-layer");
@@ -19,10 +19,10 @@ if (!sugarBtn || !body) {
         mode = (mode + 1) % 4;
 
         /* Efter 3 lägen: reset (stäng av allt) */
-        animationPage?.classList.remove("mode-1");
+        animationHeader?.classList.remove("mode-1");
         body?.classList.remove("mode-2");
-        animationHeader?.classList.remove("mode-3");
         bubbleLayer?.classList.remove("mode-2");
+        sprinkleZone?.classList.remove("mode-3");
 
         if (mode >= 1) {
             animationHeader?.classList.add("mode-1");
@@ -33,7 +33,7 @@ if (!sugarBtn || !body) {
             bubbleLayer?.classList.add("mode-2"); 
         }
         if (mode >= 3) {
-            animationPage?.classList.add("mode-3");
+            sprinkleZone?.classList.add("mode-3");
         }
 
 

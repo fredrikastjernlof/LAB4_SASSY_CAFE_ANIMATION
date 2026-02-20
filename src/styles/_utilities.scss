@@ -2,8 +2,8 @@
 
 /* Grundinställning av "kort": gemensam padding + rundade hörn */
 %card {
-  border-radius: 1rem;
-  padding: 1rem;
+    border-radius: 1rem;
+    padding: 1rem;
 }
 
 /* Regnbågslinje före rubrik/sektion */
@@ -50,4 +50,16 @@
                 var.$dark-pink,
                 var.$color-mint);
     }
+}
+
+%rainbow-border {
+    border: 4px solid transparent;
+    border-radius: 20px;
+
+    background:
+        linear-gradient(var.$dark-purple-pink , var.$color-primary-darker) padding-box,
+        linear-gradient(90deg,
+            var.$color-purple,
+            var.$dark-pink,
+            var.$color-mint ) border-box;
 }
