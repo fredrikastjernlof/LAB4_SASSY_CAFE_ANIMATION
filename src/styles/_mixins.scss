@@ -15,6 +15,6 @@
   @if color.channel($bg, "lightness", $space: hsl) > 55% {
     color: var.$dark-purple;
   } @else {
-    color: var.$color-accent-mint;
+    color: var.$dark-text;
   }
 }
