@@ -2,8 +2,7 @@
 @use "variables" as var;
 @use "mixins" as mix;
 @use "utilities" as *;
-@use "animations";
-@use "effects";
+
 
 * {
   box-sizing: border-box;
@@ -43,6 +42,7 @@ body {
 
 .site-header {
   @extend %card;
+  padding-inline: clamp(0.75rem, 3vw, 1.5rem);
   display: grid;
   grid-template-rows: auto auto;
   gap: 0.2rem;
@@ -54,57 +54,12 @@ body {
       var.$color-accent-mint );
 
   .logo {
+    min-width: 0;
+    max-width: 100%;
     font-size: clamp(2.8rem, 5vw, 5rem);
     margin-top: 2.5rem;
-
+    transform: rotate(-12deg);
     @include mix.sassy-logo(var.$color-mint, var.$color-purple);
-  }
-
-  &.animation-header.mode-1 {
-    /* Headern blir en referens för barn inuti den som är position: absolute */
-    position: relative;
-    /* Klipper bort allt som hamnar utanför headern */
-    overflow: hidden;
-
-    .color-animation {
-      /* Tar elementet ur normal layout och låter mig placera det fritt */
-      position: absolute;
-      /* Ett negativt värde gör att elementet blir större än föräldern och sticker ut åt alla håll */
-      inset: -75%;
-      /* Lägger "bakgrunds-färgklumpen" bakom innehållet -> som får z-index 1 senare */
-      z-index: 0;
-      /* Konisk gradient med startvinkel 0deg */
-      background: conic-gradient(from 0deg,
-          var.$color-secondary,
-          var.$color-primary,
-          var.$color-purple,
-          var.$color-accent-mint,
-          var.$color-secondary,
-          var.$color-primary,
-          var.$color-purple,
-          var.$color-accent-mint,
-          var.$color-secondary );
-
-      /* Suddar ut gradientens färger och skapar ett blurr av färger */
-      filter: blur(50px);
-      /* Talar om att rotationen ska ske runt mitten */
-      transform-origin: 50% 50%;
-      /* Talar om för webbläsaren att elementet kommer att genomgå en transformation, 
-      vilket kan göra animationen mjukare */
-      will-change: transform;
-      /* Animation med villkor - namn, tid för utförande, konstant hastighet och evig loop */
-      animation: spin-animation 10s linear infinite;
-    }
-
-    .color-animation-container {
-      /* För att ha kontroll över z-index och eventuella absoluta barn */
-      position: relative;
-      /* Ligger ÖVER .color-animation */
-      z-index: 1;
-      /* Fyller hela föräldern */
-      width: 100%;
-      height: 100%;
-    }
   }
 
   .brand {
@@ -116,6 +71,8 @@ body {
       align-items: flex-start;
       gap: 0.5rem;
       text-decoration: none;
+      min-width: 0;
+      gap: clamp(0.25rem, 2vw, 0.5rem);
     }
 
     &-icon {
@@ -279,12 +236,43 @@ body {
 .btn-sugar {
   margin: 1rem;
   @extend %rainbow-border;
-  padding: 0.75rem 1.5rem;
+  padding: clamp(0.6rem, 1.2vw, 0.9rem) clamp(1rem, 2vw, 1.5rem);
+  min-width: clamp(12rem, 30vw, 18rem);
+  white-space: nowrap;
+  min-height: 3rem;
   font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
 
-  transition: 0.3s ease;
+  display: inline-block;
+
+
+  box-shadow:
+    inset 0 0 14px 6px rgba(0, 0, 0, 0.6),
+    inset 0 0 18px 12px rgba(0, 0, 0, 0.5);
+
+  transform: translateY(0);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    filter 0.3s ease;
+}
+
+.btn-sugar:hover {
+  transform: translateY(-3px) scale(1.03);
+  filter: brightness(1.06);
+
+  box-shadow:
+    inset 0 0 16px 8px rgba(0, 0, 0, 0.65),
+    inset 0 0 20px 12px rgba(0, 0, 0, 0.55);
+}
+
+.btn-sugar:active {
+  transform: translateY(1px) scale(0.99);
+  box-shadow:
+    inset 0 0 10px 4px rgba(0, 0, 0, 0.7),
+    inset 0 0 14px 8px rgba(0, 0, 0, 0.6);
 }
 
 .site-footer {
@@ -296,124 +284,4 @@ body {
       var.$color-primary );
 
   @include mix.readable-text(var.$color-primary);
-}
-
-/* ------------------------------------------------*/
-/* -----------------Mindre-skärmar-----------------*/
-
-@media (max-width: 600px) {
-
-  .site-header .nav-ul {
-    flex-direction: column;
-    align-items: center;
-    gap: 0.75rem;
-
-    li a {
-      width: 100%;
-      text-align: center;
-      padding: 0.75rem 1rem;
-    }
-  }
-
-  .hero-img {
-    display: none;
-  }
-}
-
-/* ------------------------------------------------*/
-/* ---------------Lite-större-skärmar--------------*/
-
-@media (min-width: 620px) {
-
-  .featured-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .featured-img:nth-child(3n + 1) {
-    grid-column: span 1;
-    aspect-ratio: 1 / 1;
-  }
-}
-
-
-/* ------------------------------------------------*/
-/* -------------------Dark-theme-------------------*/
-
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: var.$dark-bg;
-    color: var.$dark-text;
-
-    --nav-hover: #{color.adjust(var.$dark-pink, $lightness: 10%)};
-
-    .container {
-      background-color: var.$dark-black;
-      border-radius: 1rem;
-    }
-
-    &.page-animation.mode-2 {
-
-      --bg-1: #{var.$dark-purple-pink};
-      --bg-2: #{var.$dark-purple};
-      --bg-3: #{var.$dark-secondary};
-      --bg-4: #{var.$dark-primary};
-      animation: body-bg 10s ease-in-out infinite;
-    }
-  }
-
-  .site-header {
-    margin-bottom: 1rem;
-    background: linear-gradient(-135deg,
-        var.$dark-purple-pink,
-        var.$dark-purple,
-        var.$dark-secondary,
-        var.$dark-primary,
-        var.$dark-purple-black );
-
-    a {
-      color: var.$dark-text;
-    }
-
-
-    &.animation-header.mode-1 {
-      .color-animation {
-        background: conic-gradient(from 0deg,
-            var.$dark-purple-pink,
-            var.$dark-purple,
-            var.$dark-secondary,
-            var.$dark-primary,
-            var.$color-primary-darker,
-            var.$dark-purple-black,
-            var.$dark-purple-pink,
-            var.$dark-purple,
-            var.$dark-secondary,
-            var.$dark-primary,
-            var.$color-primary-darker,
-            var.$dark-purple-black,
-            var.$dark-purple-pink );
-      }
-    }
-  }
-
-  .featured {
-    background-color: lighten(var.$dark-primary, 4%);
-  }
-
-  .main {
-    background-color: var.$dark-primary;
-    @include mix.readable-text(var.$dark-primary);
-  }
-
-  .animation-page {
-    background-color: var.$dark-primary;
-    @include mix.readable-text(var.$dark-primary);
-  }
-
-  .site-footer {
-    background: linear-gradient(135deg,
-        var.$dark-secondary,
-        var.$dark-primary );
-
-    @include mix.readable-text(var.$dark-primary);
-  }
 }

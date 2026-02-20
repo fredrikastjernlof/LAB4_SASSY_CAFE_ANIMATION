@@ -71,7 +71,7 @@ function initCandyLab() {
             sugarBtn.textContent = "Nästa: sprinkles!🍬 ";
         } else if (mode === 3) {
             setStatus("Woohoo!! 🥳 Du maxade Candy Lab! Tryck en gång till för att återställa!")
-            sugarBtn.textContent = "Återställ";
+            sugarBtn.textContent = "Återställ 🔄";
         }
 
     });
