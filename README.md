@@ -42,7 +42,7 @@ Webbplatsen innehåller flera olika animationer:
 - Visuell återkoppling via statuslista
 
 ## Publicering 💻
-
+https://lab4-sassy-cafe-animation.onrender.com/index.html
 
 ## Det här tar jag med mig från uppgiften ✅🙌
 
